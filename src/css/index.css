@@ -1,0 +1,105 @@
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css";
+
+.summary-border {
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    background-color: rgb(217, 255, 255);
+    border-radius: 10px;
+}
+
+.chart-border {
+    border: 1px solid rgba(60, 60, 60, 0.23);
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a .arrow {
+    color: darkred;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.arrow.rotate {
+    transform: rotate(180deg);
+}
+
+#entries_table td {
+    white-space: normal;
+    word-break: break-word;
+}
+
+
+#entries_table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+/* #entries_table th:nth-child(1),
+#entries_table td:nth-child(1) {
+    width: 85px; 
+} */
+
+/* #entries_table th:nth-child(2),
+#entries_table td:nth-child(2) {
+    width: 140px;
+} */
+
+#rowMenu {
+    width: 160px;
+}
+#rowMenu button:hover {
+    background: #f0f0f0;
+}
+
+.collapse-toggle {
+    border: none;
+    background-color: transparent;
+}
+/* 
+.summary-cont {
+    border: 1px solid green;
+} */
+
+.accordion-button {
+    border: 0;
+    padding: 0px 5px;
+    margin: 5px 0px;
+}
+
+.accordion-item {
+    border: none !important;
+}
+
+.accordion-body {
+    padding: 5px 10px;
+}
+
+.autocomplete-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: white;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background: #f1f1f1;
+}

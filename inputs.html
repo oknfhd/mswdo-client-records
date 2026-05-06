@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+        img-src 'self' data:;
+        navigate-to 'self';
+    ">
+    <title>Input</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-between my-2">
+            <h5 class="modal-title">New Entry</h5>
+            <a href="index.html"><button class="btn btn-outline-primary">Back</button></a>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="mb-2">
+                <label>Case No.</label>
+                <input id="caseNo" class="form-control" type="number">
+            </div>
+
+            <div class="mb-2">
+                <label>Date Created</label>
+                <input id="dateCreated" class="form-control" type="date">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col position-relative">
+                <label>Name</label>
+                <input id="clientName" class="form-control">
+                <input type="hidden" id="clientId">
+                <div id="clientSuggestions" class="list-group position-absolute w-100"
+                    style="z-index:1000; max-height:200px; overflow-y:auto;"></div>
+            </div>
+
+
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Sex</label>
+                <select class="form-select" id="clientSex">
+                    <option selected value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+
+
+            <div class="col">
+                <label>Civil Status</label>
+                <select class="form-select" id="clientCStatus">
+                    <option selected value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Separated">Separated</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Annulled">Annulled</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Age</label>
+                <input id="clientAge" class="form-control">
+            </div>
+
+            <div class="col">
+                <label>Date of Birth</label>
+                <input type="date" id="clientDob" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col position-relative">
+                <label>Nature of Case</label>
+                <input type="text" id="clientCaseNature" class="form-control">
+                <div id="caseNatureSuggestions" class="autocomplete-box"></div>
+            </div>
+
+            <div class="col">
+                <label>Remarks</label>
+                <input type="text" id="clientCaseRemarks" class="form-control">
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col position-relative">
+                <label>Address</label>
+                <input type="text" id="clientAddress" class="form-control">
+                <div id="addressSuggestions" class="autocomplete-box"></div>
+            </div>
+        </div>
+
+
+        <div class="row mb-2">
+
+            <div class="col position-relative">
+                <label>Referral</label>
+                <input type="text" id="clientReferral" class="form-control" placeholder="Type to search referrals...">
+                <div id="referralSuggestions" class="autocomplete-box"></div>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Other Remarks</label>
+                <input type="text" id="clientOtherRemarks" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Person/s In Charge</label>
+
+
+                <div class="row g-2">
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_penrad" name="clientPerson"
+                            autocomplete="off" value="Aurea Jane Penrad">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_penrad">
+                            Aurea Jane Penrad
+                        </label>
+                    </div>
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_epi" name="clientPerson"
+                            autocomplete="off" value="Stebenson Epi">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_epi">
+                            Stebenson Epi
+                        </label>
+                    </div>
+
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_chasuras" name="clientPerson"
+                            autocomplete="off" value="Norilyn Chasuras">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_chasuras">
+                            Norilyn Chasuras
+                        </label>
+                    </div>
+
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_guillermo" name="clientPerson"
+                            autocomplete="off" value="Margarita Guillermo">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_guillermo">
+                            Margarita Guillermo
+                        </label>
+                    </div>
+
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_lizardo" name="clientPerson"
+                            autocomplete="off" value="Alpha Lizardo">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_lizardo">
+                            Alpha Lizardo
+                        </label>
+                    </div>
+
+
+                    <div class="col-4">
+                        <input type="checkbox" class="btn-check" id="clientPerson_nabus" name="clientPerson"
+                            autocomplete="off" value="Jeraquel Nabus">
+                        <label class="btn btn-outline-primary w-100" for="clientPerson_nabus">
+                            Jeraquel Nabus
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer mb-3">
+            <button id="saveclientBtn" class="btn btn-primary w-75 mx-auto">Save</button>
+        </div>
+    </div>
+
+    <script type="module" src="/src/inputs.js"></script>
+    <script type="module" src="/src/renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("api", {
+  searchClients: (query) => ipcRenderer.invoke("search-clients", query),
+  getDbPath: () => ipcRenderer.invoke("get-db-path"),
+  createClient: (data) => ipcRenderer.invoke("create-client", data),
+  saveEntry: (data) => ipcRenderer.invoke("save-entry", data),
+  getEntries: () => ipcRenderer.invoke("get-entries"),
+  getEntryById: (id) => ipcRenderer.invoke("get-entry-by-id", id),
+  updateEntry: (data) => ipcRenderer.invoke("update-entry", data),
+  deleteEntry: (id) => ipcRenderer.invoke("delete-entry", id),
+  getClients: () => ipcRenderer.invoke("get-clients"),
+  updateClient: (data) => ipcRenderer.invoke("update-client", data),
+  deleteClient: (id) => ipcRenderer.invoke("delete-client", id),
+  getClientWithCases: (id) => ipcRenderer.invoke("get-client-with-cases", id),
+  getClientById: (id) => ipcRenderer.invoke("get-client-by-id", id),
+  // Statistics & Charts
+  getStatistics: () => ipcRenderer.invoke("get-statistics"),
+  getAgeDistribution: () => ipcRenderer.invoke("get-age-distribution"),
+  getGenderDistribution: () => ipcRenderer.invoke("get-gender-distribution"),
+  getCivilStatusDistribution: () => ipcRenderer.invoke("get-civil-status-distribution"),
+  getAddressDistribution: () => ipcRenderer.invoke("get-address-distribution"),
+  getBarangayDistribution: () => ipcRenderer.invoke("get-barangay-distribution"),
+  getReferralDistribution: () => ipcRenderer.invoke("get-referral-distribution"),
+  getPersonInChargeDistribution: () => ipcRenderer.invoke("get-person-in-charge-distribution"),
+  searchAddresses: (q) => ipcRenderer.invoke("search-addresses", q),
+  searchReferrals: (q) => ipcRenderer.invoke("search-referrals", q),
+  searchCaseNature: (q) => ipcRenderer.invoke("search-case-nature", q),
+  getMaxCaseNo: () => ipcRenderer.invoke("get-max-case-no"),
+  // Timeline filter APIs
+  getAvailableMonthsYears: () => ipcRenderer.invoke("get-available-months-years"),
+  getFilteredStatistics: (filters) => ipcRenderer.invoke("get-filtered-statistics", filters),
+  getFilteredAgeDistribution: (filters) => ipcRenderer.invoke("get-filtered-age-distribution", filters),
+  getFilteredGenderDistribution: (filters) => ipcRenderer.invoke("get-filtered-gender-distribution", filters),
+  getFilteredCivilStatusDistribution: (filters) => ipcRenderer.invoke("get-filtered-civil-status-distribution", filters),
+  getFilteredAddressDistribution: (filters) => ipcRenderer.invoke("get-filtered-address-distribution", filters),
+  getFilteredBarangayDistribution: (filters) => ipcRenderer.invoke("get-filtered-barangay-distribution", filters),
+  getFilteredReferralDistribution: (filters) => ipcRenderer.invoke("get-filtered-referral-distribution", filters),
+  getFilteredPersonInChargeDistribution: (filters) => ipcRenderer.invoke("get-filtered-person-in-charge-distribution", filters),
+  // Document generation
+  generateSummaryDocument: (filters) => ipcRenderer.invoke("generate-summary-document", filters),
+});

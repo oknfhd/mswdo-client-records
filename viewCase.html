@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+        img-src 'self' data:;
+        navigate-to 'self';
+    ">
+    <title>View Cases</title>
+</head>
+
+<body>
+
+    <div class="d-flex justify-content-between mt-3 mx-5">
+        <a href="index.html"><button class="btn btn-outline-primary">Back</button></a>
+        <a href="inputs.html">
+            <button type="button" class="btn btn-info insert-btn">Add Case</button>
+        </a>
+    </div>
+
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-baseline">
+            <h2 id="clientName">Client Name</h2>
+            <div>
+                <button id="editClientBtn" type="button" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button id="deleteClientBtn" type="button" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-end">
+            <div id="clientInfo" class="text-muted"></div>
+            <p class="text-end" id="caseCount">0 Cases</p>
+        </div>
+
+    </div>
+
+    <hr class="mx-5">
+
+    <div class="container" id="casesContainer"></div>
+
+    <hr class="mx-5">
+
+    <!-- Edit Client Modal -->
+    <div class="modal fade" id="editClientModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Name</label>
+                            <input id="editClient_name" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Sex</label>
+                            <select class="form-select" id="editClient_sex">
+                                <option selected value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Civil Status</label>
+                            <select class="form-select" id="editClient_civilStatus">
+                                <option selected value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Widowed">Widowed</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Annulled">Annulled</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Age</label>
+                            <input id="editClient_age" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Date of Birth</label>
+                            <input id="editClient_dob" type="date" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Address</label>
+                            <input id="editClient_address" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="saveClientChangesBtn" type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Client Modal -->
+    <div class="modal fade" id="deleteClientModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    This will delete the client and all their cases. Continue?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="confirmDeleteClientBtn" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="/src/renderer.js"></script>
+    <script type="module" src="/src/viewCase.js"></script>
+
+</body>
+
+</html>

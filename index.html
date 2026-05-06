@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- for individual pages -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+        img-src 'self' data:;
+        navigate-to 'self';
+">
+    <title>MSWD Client</title>
+</head>
+
+<body>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h4 class="card-title  ms-4">Client Records Management System</h4>
+        <div class="m-3">
+            <a href="inputs.html">
+                <button type="button" class="btn btn-info insert-btn">Insert
+                    New</button>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-tabs-custom nav-justified navtab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+                <span class="d-none d-sm-block">Home</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#clients" role="tab">
+                <span class="d-none d-sm-block">Clients</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#entries" role="tab">
+                <span class="d-none d-sm-block">Records</span>
+            </a>
+        </li>
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content p-3 text-muted">
+
+        <div class="tab-pane active" id="home" role="tabpanel"> <!--  active -->
+
+            <div class="summary-cont">
+                <div class="d-flex justify-content-between">
+                    <h3>Statistics</h3>
+                    <div class="">
+                        <button id="viewSummary" class="btn btn-outline-success">Generate Document</button>
+                    </div>
+                </div>
+                <hr class="mx-2">
+            </div>
+
+            <div class="row">
+
+                <div class="col mt-2">
+                    
+
+                    <div class="summary-preview card px-2 py-3">
+                <div class="d-flex justify-content-between mb-2">
+                    <!-- Timeline Filter -->
+                    <div class="timeline-filter p-0 px-2 rounded">
+                        <div class="row g-2">
+                            <div class="col-3">
+                                <label class="form-label small mb-0">From</label>
+                                <select class="form-select form-select-sm" id="filterFromMonth"></select>
+                            </div>
+                            <div class="col-3">
+                                <label class="form-label small mb-0"></label>
+                                <select class="form-select form-select-sm" id="filterFromYear"></select>
+                            </div>
+                            <div class="col-3">
+                                <label class="form-label small mb-0">To</label>
+                                <select class="form-select form-select-sm" id="filterToMonth"></select>
+                            </div>
+                            <div class="col-3">
+                                <label class="form-label small mb-0"></label>
+                                <select class="form-select form-select-sm" id="filterToYear"></select>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end">
+                            <button class="btn btn-sm btn-outline-primary" id="applyTimelineFilter">Apply
+                                Filter</button>
+                            <button class="btn btn-sm btn-outline-secondary" id="resetTimelineFilter">Reset</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                        <div class="totals-list">
+                            <p>Total Clients: <span class="fw-semibold" id="totalClientsCount">0</span></p>
+                            <p>Total Cases: <span class="fw-semibold" id="totalCasesCount">0</span></p>
+                        </div>
+
+                        <h5 class="mt-2">Client Statistics</h5>
+
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Sex Distribution
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="d-flex justify-content-between">
+                                            <p>Female</p>
+                                            <p id="femaleCount">0</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p>Male</p>
+                                            <p id="maleCount">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Age Group
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="d-flex justify-content-between">
+                                            <p>
+                                                &lt; 18</p>
+                                            <p id="ageUnder18Count">0</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p>18-30</p>
+                                            <p id="age18to30Count">0</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p>31-59</p>
+                                            <p id="age31to59Count">0</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p>60 &gt;</p>
+                                            <p id="ageOver60Count">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Civil Status
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p>Single</p>
+                                                <p>Married</p>
+                                                <p>Widowed</p>
+                                                <p>Separated</p>
+                                                <p>Divorced</p>
+                                                <p>Annulled</p>
+                                            </div>
+                                            <div>
+                                                <p id="singleCount">0</p>
+                                                <p id="marriedCount">0</p>
+                                                <p id="widowedCount">0</p>
+                                                <p id="separatedCount">0</p>
+                                                <p id="divorcedCount">0</p>
+                                                <p id="annulledCount">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Accordion-->
+
+
+                        <h5 class="mt-2">Case Statistics</h5>
+
+                        <div class="accordion" id="caseAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                        Referral Distribution
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                    data-bs-parent="#caseAccordion">
+                                    <div class="accordion-body">
+                                        <div id="referralAccordionList" class="d-flex flex-column gap-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive" aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                        Person In Charge Distribution
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                    data-bs-parent="#caseAccordion">
+                                    <div class="accordion-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p>Aurea Jane Penrad</p>
+                                                <p>Stebenson Epi</p>
+                                                <p>Norilyn Chasuras</p>
+                                                <p>Margarita Guillermo</p>
+                                                <p>Alpha Lizardo</p>
+                                                <p>Jeraquel Nabus</p>
+                                            </div>
+                                            <div>
+                                                <p id="aureaJanePenradCount">0</p>
+                                                <p id="stebensonEpiCount">0</p>
+                                                <p id="norilynChasurasCount">0</p>
+                                                <p id="margaritaGuillermoCount">0</p>
+                                                <p id="alphaLizardoCount">0</p>
+                                                <p id="jeraquelNabusCount">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSix" aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                        Barangay
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                    data-bs-parent="#caseAccordion">
+                                    <div class="accordion-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p>Ambassador</p>
+                                                <p>Ambongdolan</p>
+                                                <p>Ba-ayan</p>
+                                                <p>Basil</p>
+                                                <p>Caponga</p>
+                                                <p>Daclan</p>
+                                                <p>Tublay Central</p>
+                                                <p>Tuel</p>
+                                            </div>
+                                            <div>
+                                                <p id="ambassadorCount">0</p>
+                                                <p id="ambongdolanCount">0</p>
+                                                <p id="baayanCount">0</p>
+                                                <p id="basilCount">0</p>
+                                                <p id="capongaCount">0</p>
+                                                <p id="daclanCount">0</p>
+                                                <p id="centralCount">0</p>
+                                                <p id="tuelCount">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- Accordion-->
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-8 col-sm-7">
+                    <div class="container p-0 m-0">
+                        <div class="charts-cont mt-2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="chart-border p-1 mb-2">
+                                        <h6>Gender Distribution</h6>
+                                        <canvas id="sexChart"></canvas>
+                                    </div>
+
+
+                                    <div class="chart-border p-1">
+                                        <h6>Referral Distribution</h6>
+                                        <canvas id="referralChart"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="chart-border p-1 mb-2">
+                                        <h6>Civil Status</h6>
+                                        <canvas id="statusChart"></canvas>
+                                    </div>
+
+
+                                    <div class="chart-border p-1">
+                                        <h6>Person In Charge Distribution</h6>
+                                        <canvas id="picChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-4">
+                    <div class="chart-border p-1 mb-2">
+                        <h6>Age Distribution</h6>
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="chart-border p-1 mb-2">
+                        <h6>Address</h6>
+                        <canvas id="addressChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="chart-border p-1">
+                        <h6>Barangay</h6>
+                        <canvas id="barangayChart"></canvas>
+                        <!-- barangays (fixed): ambassador, ambongdolan, ba-ayan, basil, caponga, daclan, tublay central, tuel-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="tab-pane" id="clients" role="tabpanel">
+
+            <div class="row my-2">
+                <div class="col pe-5">
+                    <input class="form-control" type="text" id="searchClient" placeholder="Search...">
+                </div>
+            </div>
+
+            <div class="table-cont">
+
+                <table class="table" id="clients_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Sex</th>
+                            <th scope="col">Civil Status</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients_body">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="clientsPagination" class="d-flex justify-content-between align-items-center mt-2">
+                    <small class="text-muted" id="clientsPaginationInfo"></small>
+                    <nav aria-label="Clients pagination">
+                        <ul class="pagination pagination-sm mb-0" id="clientsPaginationPages"></ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div><!-- end tab pane -->
+
+        <!-- ENTRIES -->
+        <div class="tab-pane" id="entries" role="tabpanel">
+            <div class="card border-0">
+                <div class="card-header align-items-center border-0 bg-white">
+
+                    <div class="filters-cont ">
+                        <div class="row my-2">
+                            <div class="col pe-5">
+                                <input class="form-control" type="text" id="searchRecord" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body border-0">
+                    <div class="table-cont">
+
+                        <table class="table" id="entries_table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Case#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Sex</th>
+                                    <th scope="col">Nature of Case</th>
+                                    <th scope="col">Referral</th>
+                                    <th scope="col">Person in Charge</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="entries_body">
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="entriesPagination" class="d-flex justify-content-between align-items-center mt-2">
+                            <small class="text-muted" id="entriesPaginationInfo"></small>
+                            <nav aria-label="Entries pagination">
+                                <ul class="pagination pagination-sm mb-0" id="entriesPaginationPages"></ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- end tab pane -->
+
+
+    </div><!-- end tab pane -->
+
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="/src/renderer.js"></script>
+
+
+
+</body>
+
+</html>
